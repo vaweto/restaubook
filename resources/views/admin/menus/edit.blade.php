@@ -60,9 +60,7 @@
                                 @foreach($categories as $category)
                                     <option
                                         value="{{$category->id}}"
-                                        @if($category->id == $menu->categories->first()?->id)
-                                            selected
-                                        @endif
+                                        @selected($menu->categories->contains($category))
                                     >
                                         {{$category->name}}
                                     </option>

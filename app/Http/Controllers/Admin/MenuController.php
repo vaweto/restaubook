@@ -45,7 +45,9 @@ class MenuController extends Controller
             'image' => $image
         ]);
 
-        $menu->categories()->sync($request->category);
+        if($request->has('category')) {
+            $menu->categories()->attach($request->category);
+        }
 
         return to_route('admin.menus.index');
     }
@@ -88,7 +90,9 @@ class MenuController extends Controller
             'image' => $image
         ]);
 
-        $menu->categories()->sync($request->category);
+        if($request->has('category')) {
+            $menu->categories()->sync($request->category);
+        }
 
         return to_route('admin.menus.index');
     }
@@ -98,6 +102,7 @@ class MenuController extends Controller
      */
     public function destroy(Menu $menu)
     {
+        Storage::delete($menu->image);
         $menu->delete();
 
         return back();
