@@ -8,7 +8,7 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="flex justify-end m-2 p-2">
-                <a href="#"
+                <a href="{{ route('admin.menus.create') }}"
                    class="px-4 py-2 bg-indigo-500 hover:bg-indigo-700 rounded-lg">
                     New Menu
                 </a>
@@ -58,7 +58,16 @@
                                 {{$menu->price}}
                             </td>
                             <td class="px-6 py-4">
-                                <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                                <a href="{{ route('admin.menus.edit', $menu->id) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                                <form
+                                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                                    method="POST"
+                                    action="{{ route('admin.menus.destroy', $menu->id) }}"
+                                    onsubmit="return confirm('are you sure?');">
+                                    @csrf
+                                    @method("DELETE")
+                                    <button type="submit">Delete</button>
+                                </form>
                             </td>
                         </tr>
                         @empty

@@ -10,6 +10,13 @@ class Menu extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+      'name',
+      'description',
+      'image',
+      'price'
+    ];
+
     /**
      * @return BelongsToMany
      */
